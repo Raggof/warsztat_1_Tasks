@@ -19,31 +19,41 @@ public class TaskManager {
 
     public static void main(String[] args) {
         tasks = loadTasks();
-        System.out.println(Arrays.deepToString(tasks));
+
         Scanner scan = new Scanner(System.in);
 
         wyswiOpcje();
 
-        String opcja = scan.next();
+        while (scan.hasNextLine()) {
 
-        while (true) {
+            String opcja = scan.next();
+
             switch (opcja) {
-                case "add" -> addTask();
-                case "remove" -> removeTask(tasks, getTheNumber());
-                case "list" -> listTask(tasks);
-                case "exit" -> exit(tasks);
-                default -> {
+                case "add":
+                    addTask();
+                    break;
+                case "remove":
+                    removeTask(tasks, getTheNumber());
+                    break;
+                case "list":
+                    listTask(tasks);
+                    break;
+                case "exit":
+                    exit(tasks);
+                    break;
+                default:
                     System.out.println();
                     System.out.println("Wybierz poprawną opcję:");
-                }
-            }
-            if (opcja.equals("exit")) {
-                break;
+                    break;
             }
             wyswiOpcje();
-            opcja = scan.next();
+
         }
+
+
     }
+
+
 
     public static int getTheNumber() {
 
@@ -86,6 +96,7 @@ public class TaskManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return arr;
     }
 
